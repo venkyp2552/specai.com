@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Bot, Box, Cpu, ChevronRight, Fingerprint, Globe, Layers, Link as LinkIcon, Network, ShieldCheck, Zap, MessageSquare, Terminal, RefreshCw, Workflow, Aperture } from "lucide-react";
+import { ArrowRight, Bot, Box, Cpu, ChevronRight, Fingerprint, Globe, Layers, Link as LinkIcon, Network, ShieldCheck, Zap, MessageSquare, Terminal, RefreshCw, Workflow, Aperture, Menu, X } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useState, useRef } from "react";
 import Image from "next/image";
@@ -214,6 +214,7 @@ const TESTIMONIALS = [
 
 export default function Home() {
   const [formStatus, setFormStatus] = useState("idle");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
@@ -270,7 +271,7 @@ export default function Home() {
       {/* Navigation - Rich Elegant Style */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#050014]/60 backdrop-blur-2xl">
         <div className="max-w-[85rem] mx-auto px-6 h-20 flex items-center justify-between">
-          <a href="#home" className="flex items-center gap-3 cursor-pointer group">
+          <a href="#home" className="flex items-center gap-3 cursor-pointer group relative z-[60]">
             <AnimatedLogo />
             <span className="text-2xl font-black font-outfit tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-fuchsia-400 to-indigo-400 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
               specAI
@@ -282,10 +283,34 @@ export default function Home() {
             <a href="#testimonials" className="hover:text-cyan-400 transition-colors drop-shadow-md">Clients</a>
             <a href="#about" className="hover:text-purple-400 transition-colors drop-shadow-md">About Firm</a>
           </div>
-          <a href="#contact" className="hidden md:flex flex-row items-center gap-2 px-6 py-2.5 rounded-full border border-fuchsia-500/30 bg-fuchsia-500/10 hover:bg-fuchsia-500 text-white hover:shadow-[0_0_30px_rgba(217,70,239,0.8)] text-sm font-bold transition-all backdrop-blur-md">
+          <a href="#contact" className="hidden lg:flex flex-row items-center gap-2 px-6 py-2.5 rounded-full border border-fuchsia-500/30 bg-fuchsia-500/10 hover:bg-fuchsia-500 text-white hover:shadow-[0_0_30px_rgba(217,70,239,0.8)] text-sm font-bold transition-all backdrop-blur-md">
             Engage Firm <ArrowRight className="w-4 h-4" />
           </a>
+
+          <button 
+            className="lg:hidden relative z-[60] p-2 text-white hover:text-cyan-400 transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+          </button>
         </div>
+
+        {/* Mobile Nav Overlay */}
+        <motion.div 
+          initial={false}
+          animate={{ opacity: isMobileMenuOpen ? 1 : 0, pointerEvents: isMobileMenuOpen ? "auto" : "none" }}
+          className="fixed inset-0 bg-[#050014]/95 backdrop-blur-3xl z-50 flex flex-col items-center justify-center gap-8 lg:hidden h-screen"
+        >
+          <div className="flex flex-col items-center gap-8 text-lg font-black uppercase tracking-widest text-white">
+            <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-cyan-400 transition-colors">Services</a>
+            <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-fuchsia-400 transition-colors">Innovations</a>
+            <a href="#testimonials" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-cyan-400 transition-colors">Clients</a>
+            <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition-colors">About Firm</a>
+            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="mt-8 px-8 py-4 rounded-full border border-fuchsia-500/50 bg-fuchsia-500/20 hover:bg-fuchsia-500 text-white shadow-[0_0_30px_rgba(217,70,239,0.3)] transition-all flex items-center gap-2">
+              Engage Firm <ArrowRight className="w-5 h-5" />
+            </a>
+          </div>
+        </motion.div>
       </nav>
 
       {/* Seamless scrolling sections using flex column with minimal padding gaps */}
@@ -301,7 +326,7 @@ export default function Home() {
             
             <motion.h1 
               variants={fadeInUp}
-              className="text-6xl md:text-[5.5rem] font-black font-outfit tracking-tighter leading-[0.9] mb-8 drop-shadow-2xl"
+              className="text-[3.5rem] sm:text-[4.5rem] md:text-[5.5rem] font-black font-outfit tracking-tighter leading-[1] md:leading-[0.9] mb-6 md:mb-8 drop-shadow-2xl"
             >
               Architecting <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-indigo-400 drop-shadow-[0_0_30px_rgba(217,70,239,0.4)]">
@@ -353,7 +378,7 @@ export default function Home() {
 
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
             >
               {SERVICES.map((srv, idx) => (
                 <motion.div 
@@ -524,7 +549,7 @@ export default function Home() {
             {/* FOUNDER BLOCK AT THE END OF ABOUT SECTION */}
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
-              className="flex flex-col lg:flex-row items-center gap-16 p-12 lg:p-16 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-3xl shadow-2xl relative overflow-hidden group hover:border-cyan-500/30 transition-colors duration-700"
+              className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 p-8 sm:p-12 lg:p-16 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-3xl shadow-2xl relative overflow-hidden group hover:border-cyan-500/30 transition-colors duration-700"
             >
               <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-600/5 blur-[120px] rounded-full group-hover:bg-fuchsia-600/10 transition-colors duration-1000" />
               
@@ -537,14 +562,14 @@ export default function Home() {
                 </motion.div>
               </div>
 
-              <div className="w-full lg:w-2/3 relative z-10">
+              <div className="w-full lg:w-2/3 relative z-10 flex flex-col items-center lg:items-start text-center lg:text-left">
                 <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-fuchsia-500/30 bg-fuchsia-500/10 text-xs font-bold text-fuchsia-300 mb-6 uppercase tracking-widest shadow-[0_0_15px_rgba(217,70,239,0.2)]">
                   Founder & Chief Architect
                 </motion.div>
-                <motion.h2 variants={fadeInUp} className="text-5xl md:text-7xl font-black font-outfit mb-4 text-white tracking-tighter">
+                <motion.h2 variants={fadeInUp} className="text-4xl sm:text-5xl md:text-7xl font-black font-outfit mb-4 text-white tracking-tighter">
                   Venkaiah P.
                 </motion.h2>
-                <motion.h3 variants={fadeInUp} className="text-xl md:text-2xl text-cyan-400 mb-8 font-bold font-outfit drop-shadow-md">
+                <motion.h3 variants={fadeInUp} className="text-lg sm:text-xl md:text-2xl text-cyan-400 mb-8 font-bold font-outfit drop-shadow-md">
                   Smart Contract Security Auditor & AI Systems Engineer
                 </motion.h3>
                 <motion.div variants={fadeInUp} className="text-sm md:text-base text-[#cbd5e1] mb-10 leading-relaxed font-light space-y-4">
@@ -614,7 +639,7 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/20 blur-[120px] pointer-events-none" />
               
               <form onSubmit={handleContactSubmit} className="relative z-10 flex flex-col gap-8">
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="flex flex-col gap-3">
                     <label className="text-xs font-bold uppercase tracking-widest text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">Name</label>
                     <input required name="name" type="text" className="w-full bg-[#050014]/50 border border-white/10 rounded-2xl px-6 py-4 text-white font-medium focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all shadow-inner" placeholder="Jane Doe" />
