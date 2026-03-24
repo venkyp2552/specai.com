@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Bot, Box, Cpu, ChevronRight, Fingerprint, Globe, Layers, Link as LinkIcon, Network, ShieldCheck, Zap, MessageSquare, Terminal, RefreshCw, Workflow, Aperture, Menu, X } from "lucide-react";
+import { ArrowRight, Bot, Box, Cpu, ChevronRight, Fingerprint, Globe, Layers, Link as LinkIcon, Network, ShieldCheck, Zap, MessageSquare, Terminal, RefreshCw, Workflow, Aperture, Menu, X, Smartphone } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useState, useRef } from "react";
 import Image from "next/image";
@@ -123,6 +123,16 @@ const SERVICES = [
       <div className="absolute inset-0 opacity-10 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none overflow-hidden flex items-center justify-center z-0">
         <motion.div animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0.7, 0.3], rotate: [0, 90, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }} className="w-20 h-20 bg-gradient-to-tr from-purple-500/20 to-fuchsia-500/20 rounded-lg blur-md absolute" />
         <motion.div animate={{ scale: [1.5, 1, 1.5], opacity: [0.5, 0.2, 0.5], rotate: [0, -90, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="w-16 h-16 border border-purple-500/30 rounded-full blur-sm absolute" />
+      </div>
+    )
+  },
+  { 
+    name: "Mobile App Development", 
+    icon: <Smartphone className="w-6 h-6 text-pink-400" />,
+    bgVisual: (
+      <div className="absolute inset-0 opacity-10 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none overflow-hidden flex items-center justify-center z-0">
+        <motion.div animate={{ y: [-10, 10, -10] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="w-12 h-20 border-[3px] border-pink-500/50 rounded-xl absolute mix-blend-screen" />
+        <motion.div animate={{ y: [10, -10, 10] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }} className="w-16 h-24 border border-fuchsia-400/30 rounded-[1.5rem] absolute mix-blend-screen" />
       </div>
     )
   },
@@ -378,7 +388,7 @@ export default function Home() {
 
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto"
             >
               {SERVICES.map((srv, idx) => (
                 <motion.div 
@@ -710,12 +720,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="max-w-[85rem] mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-xs text-[#475569] font-black uppercase tracking-widest pt-10 border-t border-white/5 w-full">
+          <div className="max-w-[85rem] mx-auto px-6 flex flex-col items-center justify-center text-center text-xs text-[#475569] font-black uppercase tracking-widest pt-10 border-t border-white/5 w-full">
             <div>© {new Date().getFullYear()} specAI Engineering Ltd.</div>
-            <div className="flex gap-8 mt-6 md:mt-0 text-fuchsia-500/50">
-              <span className="hover:text-fuchsia-400 transition-colors cursor-pointer">San Francisco</span>
-              <span className="hover:text-cyan-400 transition-colors cursor-pointer">Dubai</span>
-            </div>
           </div>
         </footer>
 
