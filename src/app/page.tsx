@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants, useScroll, useTransform } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ArrowRight, Bot, Box, Cpu, ChevronRight, Fingerprint, Globe, Layers, Link as LinkIcon, Network, ShieldCheck, Zap, MessageSquare, Terminal, RefreshCw, Workflow, Aperture, Menu, X, Smartphone } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useState, useRef } from "react";
@@ -225,9 +225,6 @@ const TESTIMONIALS = [
 export default function Home() {
   const [formStatus, setFormStatus] = useState("idle");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
-  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -264,18 +261,21 @@ export default function Home() {
   };
 
   return (
-    <main ref={containerRef} className="min-h-screen bg-[#050014] text-white font-sans selection:bg-fuchsia-500/50 overflow-hidden relative">
+    <main className="min-h-screen bg-[#050014] text-white font-sans selection:bg-fuchsia-500/50 overflow-hidden relative">
       
-      {/* 3D Interactive Background with Smooth Parallax */}
-      <motion.div style={{ y: yBg }} className="absolute inset-0 pointer-events-none z-0">
+      {/* 3D Interactive Background */}
+      <div className="absolute inset-0 pointer-events-none z-0 hidden md:block">
         <CanvasBackground />
-      </motion.div>
+      </div>
+      <div className="absolute inset-0 pointer-events-none z-0 md:hidden opacity-50">
+        <CanvasBackground />
+      </div>
 
-      {/* Global Glowing Ambience animated */}
+      {/* Global Glowing Ambience (Static for absolute zero mobile scrolling lag) */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <motion.div animate={{ rotate: 360, scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 40, ease: "linear" }} className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] bg-blue-700/20 blur-[160px] rounded-full mix-blend-screen" />
-        <motion.div animate={{ rotate: -360, scale: [1, 1.5, 1] }} transition={{ repeat: Infinity, duration: 50, ease: "linear" }} className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-fuchsia-700/20 blur-[160px] rounded-full mix-blend-screen" />
-        <motion.div animate={{ rotate: 180, x: [-100, 100, -100], y: [-50, 50, -50] }} transition={{ repeat: Infinity, duration: 30, ease: "easeInOut" }} className="absolute top-[20%] right-[20%] w-[40vw] h-[40vw] bg-cyan-500/10 blur-[150px] rounded-full mix-blend-screen" />
+        <div className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] bg-blue-700/10 md:bg-blue-700/20 blur-[70px] md:blur-[160px] rounded-full mix-blend-screen" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-fuchsia-700/10 md:bg-fuchsia-700/20 blur-[70px] md:blur-[160px] rounded-full mix-blend-screen" />
+        <div className="absolute top-[30%] right-[10%] w-[40vw] h-[40vw] bg-cyan-500/10 blur-[60px] md:blur-[150px] rounded-full mix-blend-screen" />
       </div>
 
       {/* Navigation - Rich Elegant Style */}
@@ -324,10 +324,10 @@ export default function Home() {
       </nav>
 
       {/* Seamless scrolling sections using flex column with minimal padding gaps */}
-      <div className="relative z-10 flex flex-col pt-20">
+      <div className="relative z-10 flex flex-col pt-10 md:pt-20">
         
         {/* HERO SECTION */}
-        <section id="home" className="min-h-screen flex items-center w-full max-w-[85rem] mx-auto px-6 lg:px-8 border-none">
+        <section id="home" className="min-h-[85vh] md:min-h-screen flex items-center w-full max-w-[85rem] mx-auto px-6 lg:px-8 border-none pt-24 md:pt-0 pb-16 md:pb-0">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-3xl relative z-10 lg:pr-10">
             <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-xs font-bold text-cyan-300 mb-8 uppercase tracking-widest shadow-[0_0_20px_rgba(34,211,238,0.3)]">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
@@ -358,7 +358,7 @@ export default function Home() {
         </section>
 
         {/* SERVICES SECTION */}
-        <section id="services" className="w-full relative min-h-[60vh] flex flex-col justify-center border-t border-white/10 bg-gradient-to-br from-[#050014] via-[#090518] to-[#0c0a20] pt-24 pb-24 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+        <section id="services" className="w-full relative min-h-[60vh] flex flex-col justify-center border-t border-white/10 bg-gradient-to-br from-[#050014] via-[#090518] to-[#0c0a20] pt-16 md:pt-24 pb-16 md:pb-24 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
           {/* Animated Background Context */}
           <div className="absolute inset-0 z-0 opacity-20 pointer-events-none flex items-center justify-center">
             <div className="absolute w-[800px] h-[800px] border border-cyan-500/20 rounded-full animate-[spin_60s_linear_infinite] border-dashed" />
@@ -417,7 +417,7 @@ export default function Home() {
         </section>
 
         {/* 9 UNIQUE PROJECTS SECTION */}
-        <section id="projects" className="w-full relative min-h-screen flex flex-col justify-center border-t border-white/5 bg-[#050014] pt-24 pb-24">
+        <section id="projects" className="w-full relative min-h-[80vh] flex flex-col justify-center border-t border-white/5 bg-[#050014] pt-16 md:pt-24 pb-16 md:pb-24">
           <div className="max-w-[85rem] mx-auto px-6 lg:px-8 relative z-10 w-full">
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
@@ -468,7 +468,7 @@ export default function Home() {
         </section>
 
         {/* TESTIMONIALS */}
-        <section id="testimonials" className="w-full relative border-t border-white/5 bg-gradient-to-b from-[#050014] to-[#0c0a20] pt-24 pb-24 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] z-20">
+        <section id="testimonials" className="w-full relative border-t border-white/5 bg-gradient-to-b from-[#050014] to-[#0c0a20] pt-16 md:pt-24 pb-16 md:pb-24 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] z-20">
           <div className="max-w-[85rem] mx-auto px-6 lg:px-8 w-full">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="text-center mb-16">
               <motion.h2 variants={fadeInUp} className="text-sm font-bold uppercase tracking-widest text-cyan-400 mb-3 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">Enterprise Endorsements</motion.h2>
@@ -508,7 +508,7 @@ export default function Home() {
         </section>
 
         {/* FULL ABOUT SECTION WITH FOUNDER DETAILS LAST */}
-        <section id="about" className="w-full relative border-t border-white/5 bg-[#050014] pt-24 pb-24">
+        <section id="about" className="w-full relative border-t border-white/5 bg-[#050014] pt-16 md:pt-24 pb-16 md:pb-24">
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-80 h-80 bg-fuchsia-600/10 blur-[150px] mix-blend-screen pointer-events-none" />
           <div className="max-w-[85rem] mx-auto px-6 lg:px-8 relative z-10 w-full">
             
@@ -608,7 +608,7 @@ export default function Home() {
         </section>
 
         {/* CONTACT FORM */}
-        <section id="contact" className="w-full relative border-t border-white/5 bg-gradient-to-b from-[#050014] to-[#0c0a20] pt-24 pb-20 z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+        <section id="contact" className="w-full relative border-t border-white/5 bg-gradient-to-b from-[#050014] to-[#0c0a20] pt-16 md:pt-24 pb-16 md:pb-20 z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/10 blur-[150px] mix-blend-screen pointer-events-none" />
           
           <div className="max-w-[85rem] mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10 w-full">
@@ -689,34 +689,34 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-white/5 bg-[#02000a] pt-20 pb-10 z-20 relative">
-          <div className="max-w-[85rem] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 mb-16 w-full">
+        <footer className="border-t border-white/5 bg-[#02000a] pt-16 md:pt-20 pb-8 md:pb-10 z-20 relative">
+          <div className="max-w-[85rem] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-12 md:mb-16 w-full">
             <div className="md:col-span-2">
-              <div className="flex items-center gap-4 mb-8 cursor-pointer group w-max">
+              <Link href="/" className="flex items-center gap-4 mb-6 md:mb-8 cursor-pointer group w-max">
                 <AnimatedLogo />
                 <span className="text-3xl font-black font-outfit tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-indigo-400 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
                   specAI
                 </span>
-              </div>
-              <p className="text-[#64748b] max-w-sm font-medium text-lg leading-relaxed">
+              </Link>
+              <p className="text-[#64748b] max-w-sm font-medium text-base md:text-lg leading-relaxed">
                 Elite systems engineering and cognitive 3D architecture for forward-thinking enterprises.
               </p>
             </div>
             <div>
-              <h4 className="text-white font-black mb-6 font-outfit text-xl">Sitemap</h4>
-              <div className="flex flex-col gap-4 text-[#94a3b8] font-bold text-sm">
-                <a href="#services" className="hover:text-cyan-400 transition-colors">Services</a>
-                <a href="#projects" className="hover:text-fuchsia-400 transition-colors">Innovations</a>
-                <a href="#about" className="hover:text-purple-400 transition-colors">About Firm</a>
-                <a href="#contact" className="hover:text-indigo-400 transition-colors">Engage</a>
+              <h4 className="text-white font-black mb-4 md:mb-6 font-outfit text-lg md:text-xl">Sitemap</h4>
+              <div className="flex flex-col gap-3 md:gap-4 text-[#94a3b8] font-bold text-sm">
+                <a href="/#services" className="hover:text-cyan-400 transition-colors">Services</a>
+                <a href="/#projects" className="hover:text-fuchsia-400 transition-colors">Innovations</a>
+                <a href="/#about" className="hover:text-purple-400 transition-colors">About Firm</a>
+                <a href="/#contact" className="hover:text-indigo-400 transition-colors">Engage</a>
               </div>
             </div>
             <div>
-              <h4 className="text-white font-black mb-6 font-outfit text-xl">Legal</h4>
-              <div className="flex flex-col gap-4 text-[#94a3b8] font-bold text-sm">
-                <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-fuchsia-400 transition-colors">Terms of Service</a>
-                <a href="#" className="hover:text-indigo-400 transition-colors">NDA Templates</a>
+              <h4 className="text-white font-black mb-4 md:mb-6 font-outfit text-lg md:text-xl">Legal</h4>
+              <div className="flex flex-col gap-3 md:gap-4 text-[#94a3b8] font-bold text-sm">
+                <Link href="/privacy-policy" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link>
+                <Link href="/terms-of-service" className="hover:text-fuchsia-400 transition-colors">Terms of Service</Link>
+                <Link href="/terms-of-service" className="hover:text-indigo-400 transition-colors">NDA Templates</Link>
               </div>
             </div>
           </div>
