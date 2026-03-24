@@ -306,8 +306,8 @@ export default function Home() {
             <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-fuchsia-400 transition-colors">Innovations</a>
             <a href="#testimonials" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-cyan-400 transition-colors">Clients</a>
             <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition-colors">About Firm</a>
-            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="mt-8 px-8 py-4 rounded-full border border-fuchsia-500/50 bg-fuchsia-500/20 hover:bg-fuchsia-500 text-white shadow-[0_0_30px_rgba(217,70,239,0.3)] transition-all flex items-center gap-2">
-              Engage Firm <ArrowRight className="w-5 h-5" />
+            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="mt-6 px-6 py-3 text-base md:mt-8 md:px-8 md:py-4 rounded-full border border-fuchsia-500/50 bg-fuchsia-500/20 hover:bg-fuchsia-500 text-white shadow-[0_0_30px_rgba(217,70,239,0.3)] transition-all flex items-center gap-2">
+              Engage Firm <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
             </a>
           </div>
         </motion.div>
@@ -338,10 +338,10 @@ export default function Home() {
               specAI operates at the bleeding edge of corporate automation and artificial intelligence infrastructure. We build 0-to-1 solutions merging highly robust production architecture with vibrant elegant aesthetics.
             </motion.p>
             
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-5">
-              <a href="#services" className="px-8 py-5 rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white font-black hover:from-fuchsia-500 hover:to-indigo-500 hover:shadow-[0_0_40px_rgba(217,70,239,0.6)] transition-all flex items-center justify-center gap-3">
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 md:gap-5">
+              <a href="#services" className="px-6 py-4 md:px-8 md:py-5 text-sm md:text-base rounded-full bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white font-black hover:from-fuchsia-500 hover:to-indigo-500 hover:shadow-[0_0_40px_rgba(217,70,239,0.6)] transition-all flex items-center justify-center gap-3">
                 Explore Our Offerings
-                <ArrowRight className="w-5 h-5 hover:translate-x-2 transition-transform drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]" />
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 hover:translate-x-2 transition-transform drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]" />
               </a>
             </motion.div>
           </motion.div>
@@ -663,7 +663,7 @@ export default function Home() {
                 <button 
                   type="submit" 
                   disabled={formStatus === "submitting" || formStatus === "success"}
-                  className="w-full mt-4 py-5 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-fuchsia-500 text-white font-black text-xl hover:shadow-[0_0_40px_rgba(217,70,239,0.5)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 relative overflow-hidden group"
+                  className="w-full mt-4 py-4 md:py-5 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-fuchsia-500 text-white font-black text-base md:text-xl hover:shadow-[0_0_40px_rgba(217,70,239,0.5)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 relative overflow-hidden group"
                 >
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                   <span className="relative z-10 flex items-center gap-2">
