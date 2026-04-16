@@ -140,97 +140,94 @@ const SERVICES = [
 
 const PROJECTS = [
   {
-    title: "OracleNet: Multi-Agent DeFi Intel",
-    slug: "oraclenet-defi-intel",
-    desc: "Autonomous swarm intelligence auditing cross-chain smart contract vulnerabilities using multi-agent RL prior to malicious exploits.",
+    title: "RetailAssist: AI Support",
+    slug: "retailassist-ai-support",
+    desc: "A customizable autonomous agent that handles customer support, processes returns, and recommends products round-the-clock.",
+    icon: <MessageSquare className="w-6 h-6 text-fuchsia-400" />,
+    tag: "Customer Experience",
+  },
+  {
+    title: "SalesForge: SDR Swarm",
+    slug: "salesforge-sdr-swarm",
+    desc: "An intelligent outbound engine that researches leads, drafts hyper-personalized emails, and books meetings autonomously.",
+    icon: <Globe className="w-6 h-6 text-cyan-400" />,
+    tag: "Sales Automation",
+  },
+  {
+    title: "DocuMind: Enterprise RAG",
+    slug: "documind-enterprise-rag",
+    desc: "A ready-to-deploy knowledge base that securely ingests internal company documents and provides highly accurate instant answers.",
     icon: <DatabaseIcon />,
-    tag: "Security Architecture",
+    tag: "Knowledge Management",
   },
   {
-    title: "NeuroGraph: Unstructured to Enterprise",
-    slug: "neurograph-enterprise",
-    desc: "A conceptual bridge interpreting unstructured thought/text data into strict relational enterprise architectures instantly.",
+    title: "NeuroGraph: Data Pipeline",
+    slug: "neurograph-pipeline",
+    desc: "Automatically extracts unstructured data from messy invoices, PDFs, and emails into structured SQL databases via AI.",
     icon: <BrainIcon />,
-    tag: "Data Pipeline",
+    tag: "AI Data Pipeline",
   },
   {
-    title: "OmniRAG: Predictive Context Engine",
+    title: "OmniRAG: Context Engine",
     slug: "omnirag-engine",
     desc: "Zero-latency predictive RAG that pre-fetches and generates context buffers before end-users finish typing the prompt query.",
     icon: <SearchIcon />,
     tag: "LLM Infrastructure",
   },
   {
-    title: "Synthetica: Autonomous BI OS",
+    title: "Synthetica: BI OS",
     slug: "synthetica-os",
-    desc: "An AI system acting as a micro-company CEO, autonomously managing marketing, triage, and dev ops with human-in-the-loop oversight.",
+    desc: "An executive AI dashboard that monitors real-time business metrics, detects anomalies, and drafts actionable daily reports.",
     icon: <Cpu className="w-6 h-6 text-indigo-400" />,
-    tag: "Business Automation",
+    tag: "Business Intelligence",
   },
   {
-    title: "Chronosolver: Temporal Rollback",
-    slug: "chronosolver-rollback",
-    desc: "Event-driven architecture simulating parallel business path outcomes before actually executing irreversible enterprise API calls.",
-    icon: <ClockIcon />,
-    tag: "System Engineering",
-  },
-  {
-    title: "HyperTwin: Defensive AI Networking",
-    slug: "hypertwin-networking",
-    desc: "Dynamic 1:1 digital twin of corporate networks automatically training defensive AI against simulated zero-day exploits 24/7.",
-    icon: <Network className="w-6 h-6 text-purple-400" />,
-    tag: "Cybersecurity",
-  },
-  {
-    title: "QuantumFlow: Probabilistic n8n",
+    title: "QuantumFlow: AI Workflows",
     slug: "quantumflow-n8n",
-    desc: "Quantum-state inspired workflow automation instantly re-routing API gateway failures to self-healing fallback sub-networks.",
-    icon: <Globe className="w-6 h-6 text-cyan-400" />,
+    desc: "Self-healing background n8n processes that seamlessly connect your CRM, billing, and communication platforms.",
+    icon: <Workflow className="w-6 h-6 text-emerald-400" />,
     tag: "Workflow Orchestration",
   },
   {
-    title: "Somnium: Generative UI Matrix",
+    title: "Somnium: Generative UI",
     slug: "somnium-ui-matrix",
-    desc: "React/Next.js environment rendering bespoke interface topologies matching enterprise users' live cognitive load metrics.",
-    icon: <Layers className="w-6 h-6 text-emerald-400" />,
+    desc: "Next.js environments that dynamically reorganize their layout and features in real-time based on the user's specific role.",
+    icon: <Layers className="w-6 h-6 text-purple-400" />,
     tag: "Frontend Architecture",
   },
   {
-    title: "EtherGuard: Flash Counter-Exploits",
-    slug: "etherguard-exploits",
-    desc: "The first AI-driven agent running in the mempool to execute counter-exploits autonomously within milliseconds of detecting DeFi drainers.",
-    icon: <ShieldCheck className="w-6 h-6 text-teal-400" />,
-    tag: "Blockchain",
+    title: "Visionary: Content Studio",
+    slug: "visionary-content",
+    desc: "A centralized AI engine that takes a single prompt and generates tailored blog posts, social threads, and marketing copy.",
+    icon: <Bot className="w-6 h-6 text-pink-400" />,
+    tag: "Marketing AI",
   }
 ];
 
 const TESTIMONIALS = [
   {
-    quote: "specAI restructured our fragmented LLM workflows into a singular, highly cohesive architecture. They operate at the boundary of what's currently theoretically possible.",
-    author: "Elena Vasquez",
-    role: "CTO, Finova Tech",
-  },
-  {
-    quote: "Their approach to smart contract vulnerability auditing saved us from deploying a critical reentrancy vector. We don't deploy anything without their pre-flight validation.",
-    author: "Marcus Chen",
-    role: "Lead Engineer, DefiMatrix",
+    quote: "Their approach to AI automation and predictive analytics radically streamlined our data pipelines. We don't scale our operations without their reliable agentic workflows.",
+    author: "Arun Kumar",
+    role: "Founder, Wealthmania & Financial Expert",
   },
   {
     quote: "Working with Venkaiah and the specAI platform transformed how we think about automation. Our entire ops pipeline is now self-healing.",
-    author: "Sarah Jenkins",
-    role: "VP of Engineering, ScaleOps",
+    author: "Jayanth",
+    role: "onlyThree atoms",
   },
 ];
 
 export default function Home() {
   const [formStatus, setFormStatus] = useState("idle");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus("submitting");
+    const form = e.currentTarget;
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
     try {
@@ -242,19 +239,25 @@ export default function Home() {
           "Accept": "application/json"
         },
         body: JSON.stringify({
-          ...data,
-          _subject: "New specAI Engagement Request",
+          "Executive Name": data.name,
+          "Enterprise / Firm Name": data.company,
+          "Corporate Email": data.email,
+          "Project Requirements Overview": data.summary,
+          _subject: `Executive Engagement Request: ${data.company} - ${data.name}`,
           _template: "table" // Styles the recipient email to look clean
         })
       });
 
       if (response.ok) {
-        setFormStatus("success");
+        setFormStatus("idle");
+        form.reset();
+        setToastMessage("Connection Successfully Established!");
+        setTimeout(() => setToastMessage(""), 5000);
       } else {
         setFormStatus("idle");
         alert("Failed to send the request. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setFormStatus("idle");
       alert("Network error: Please try submitting again.");
     }
@@ -267,15 +270,13 @@ export default function Home() {
       <div className="absolute inset-0 pointer-events-none z-0 hidden md:block">
         <CanvasBackground />
       </div>
-      <div className="absolute inset-0 pointer-events-none z-0 md:hidden opacity-50">
-        <CanvasBackground />
-      </div>
+      {/* Canvas disabled on mobile to prevent extreme lag and preserve battery */}
 
-      {/* Global Glowing Ambience (Static for absolute zero mobile scrolling lag) */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] bg-blue-700/10 md:bg-blue-700/20 blur-[70px] md:blur-[160px] rounded-full mix-blend-screen" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-fuchsia-700/10 md:bg-fuchsia-700/20 blur-[70px] md:blur-[160px] rounded-full mix-blend-screen" />
-        <div className="absolute top-[30%] right-[10%] w-[40vw] h-[40vw] bg-cyan-500/10 blur-[60px] md:blur-[150px] rounded-full mix-blend-screen" />
+      {/* Global Glowing Ambience (Optimized for performance with radial gradients) */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden hidden md:block">
+        <div className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] rounded-full opacity-20 bg-[radial-gradient(circle,rgba(29,78,216,1)_0%,transparent_70%)] mix-blend-screen" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full opacity-20 bg-[radial-gradient(circle,rgba(162,28,175,1)_0%,transparent_70%)] mix-blend-screen" />
+        <div className="absolute top-[30%] right-[10%] w-[40vw] h-[40vw] rounded-full opacity-10 bg-[radial-gradient(circle,rgba(6,182,212,1)_0%,transparent_70%)] mix-blend-screen" />
       </div>
 
       {/* Navigation - Rich Elegant Style */}
@@ -358,24 +359,24 @@ export default function Home() {
         </section>
 
         {/* SERVICES SECTION */}
-        <section id="services" className="w-full relative min-h-[60vh] flex flex-col justify-center border-t border-white/10 bg-gradient-to-br from-[#050014] via-[#090518] to-[#0c0a20] pt-16 md:pt-24 pb-16 md:pb-24 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+        <section id="services" className="w-full relative flex flex-col justify-center border-t border-white/10 bg-gradient-to-br from-[#050014] via-[#090518] to-[#0c0a20] pt-8 md:pt-12 pb-8 md:pb-12 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
           {/* Animated Background Context */}
           <div className="absolute inset-0 z-0 opacity-20 pointer-events-none flex items-center justify-center">
             <div className="absolute w-[800px] h-[800px] border border-cyan-500/20 rounded-full animate-[spin_60s_linear_infinite] border-dashed" />
             <div className="absolute w-[600px] h-[600px] border border-fuchsia-500/20 rounded-full animate-[spin_40s_linear_infinite_reverse] border-dashed" />
             <div className="absolute w-[400px] h-[400px] border border-indigo-500/20 rounded-full animate-[spin_20s_linear_infinite]" />
           </div>
-          <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-600/10 blur-[150px] mix-blend-screen pointer-events-none" />
-          <div className="absolute left-[10%] top-1/4 w-[400px] h-[400px] bg-fuchsia-600/10 blur-[150px] mix-blend-screen pointer-events-none" />
+          <div className="absolute right-[10%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-10 bg-[radial-gradient(circle,rgba(8,145,178,1)_0%,transparent_70%)] mix-blend-screen pointer-events-none" />
+          <div className="absolute left-[10%] top-1/4 w-[400px] h-[400px] rounded-full opacity-10 bg-[radial-gradient(circle,rgba(192,38,211,1)_0%,transparent_70%)] mix-blend-screen pointer-events-none" />
           
           <div className="max-w-[85rem] mx-auto px-6 lg:px-8 relative z-10 w-full">
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
-              className="mb-16 text-center"
+              className="mb-8 text-center"
             >
-              <motion.h2 variants={fadeInUp} className="text-sm font-bold uppercase tracking-widest text-cyan-400 mb-3 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">What We Offer</motion.h2>
+              <motion.h2 variants={fadeInUp} className="text-sm font-bold uppercase tracking-widest text-cyan-400 mb-3 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">Unique Enterprise Products</motion.h2>
               <motion.div variants={fadeInUp} className="text-5xl md:text-7xl font-black font-outfit text-white drop-shadow-xl inline-block relative">
-                Premium Services
+                Premium Solutions
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
@@ -386,47 +387,44 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer}
+            <div 
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto"
             >
-              {SERVICES.map((srv, idx) => (
-                <motion.div 
-                  key={idx}
-                  variants={fadeInUp}
-                  whileHover={{ y: -10, scale: 1.05 }}
-                  className="p-6 md:p-8 rounded-2xl bg-gradient-to-b from-white/10 to-transparent border border-white/10 flex flex-col items-center justify-center text-center backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:border-fuchsia-500/50 hover:shadow-[0_0_40px_rgba(217,70,239,0.3)] transition-all cursor-pointer group relative overflow-hidden min-h-[160px]"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-fuchsia-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
-                  
-                  {srv.bgVisual}
+              {SERVICES.map((srv, idx) => {
+                const slug = srv.name.toLowerCase().replace(/\s+/g, '-');
+                return (
+                  <Link href={`/services/${slug}`} key={idx} className="block group/link transition-transform hover:scale-[1.02] duration-300">
+                    <div 
+                      className="p-6 md:p-8 rounded-2xl bg-gradient-to-b from-[#1a162e] to-transparent border border-white/10 flex flex-col items-center justify-center text-center shadow-[0_10px_20px_rgba(0,0,0,0.3)] group-hover/link:border-cyan-500/40 relative overflow-hidden min-h-[160px] h-full"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/10 to-transparent opacity-0 group-hover/link:opacity-100 transition-opacity duration-300 z-0" />
+                      
+                      <div className="absolute inset-0 hidden md:block z-0 opacity-40 group-hover/link:opacity-100 transition-opacity duration-500">{srv.bgVisual}</div>
 
-                  <motion.div 
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ repeat: Infinity, duration: 2 + (idx % 3) * 0.5, ease: "easeInOut" }}
-                    className="w-16 h-16 rounded-full bg-black/50 border border-white/5 flex items-center justify-center mb-6 group-hover:bg-white/10 group-hover:scale-110 transition-all duration-300 relative z-10 shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_25px_rgba(217,70,239,0.4)]"
-                  >
-                    {srv.icon}
-                  </motion.div>
-                  
-                  <h3 className="text-white font-bold font-outfit text-lg relative z-10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-300 group-hover:to-fuchsia-300 transition-all">{srv.name}</h3>
-                </motion.div>
-              ))}
-            </motion.div>
+                      <div className="w-16 h-16 rounded-full bg-black/60 border border-white/10 flex items-center justify-center mb-6 group-hover/link:bg-cyan-500/10 transition-all duration-300 relative z-10 shadow-lg group-hover/link:scale-110">
+                        {srv.icon}
+                      </div>
+                      
+                      <h3 className="text-white font-bold font-outfit text-lg relative z-10 group-hover/link:text-cyan-300 transition-colors duration-300">{srv.name}</h3>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </section>
 
         {/* 9 UNIQUE PROJECTS SECTION */}
-        <section id="projects" className="w-full relative min-h-[80vh] flex flex-col justify-center border-t border-white/5 bg-[#050014] pt-16 md:pt-24 pb-16 md:pb-24">
+        <section id="projects" className="w-full relative flex flex-col justify-center border-t border-white/5 bg-[#050014] pt-8 md:pt-12 pb-8 md:pb-12">
           <div className="max-w-[85rem] mx-auto px-6 lg:px-8 relative z-10 w-full">
             <motion.div 
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
-              className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6"
+              className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6"
             >
               <div>
-                <motion.h2 variants={fadeInUp} className="text-sm font-bold uppercase tracking-widest text-fuchsia-400 mb-3 drop-shadow-[0_0_10px_rgba(217,70,239,0.5)]">Proprietary Innovations</motion.h2>
+                <motion.h2 variants={fadeInUp} className="text-sm font-bold uppercase tracking-widest text-fuchsia-400 mb-3 drop-shadow-[0_0_10px_rgba(217,70,239,0.5)]">Products Ready For Deployment</motion.h2>
                 <motion.div variants={fadeInUp} className="text-5xl md:text-7xl font-black font-outfit max-w-3xl leading-none drop-shadow-xl text-white">
-                  9 Revolutionary Architectures.
+                  9 Unique Turnkey Products.
                 </motion.div>
               </div>
             </motion.div>
@@ -442,7 +440,7 @@ export default function Home() {
                     whileHover={{ scale: 1.03, rotate: -1 }}
                     className="p-8 h-full rounded-2xl border border-blue-500/20 bg-gradient-to-b from-[#0c0a20]/90 to-[#050014]/90 hover:bg-[#120f2e] hover:border-fuchsia-500/60 transition-all duration-300 group relative overflow-hidden backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] cursor-pointer"
                   >
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-fuchsia-500/10 blur-[50px] group-hover:bg-cyan-500/30 transition-colors duration-700" />
+                    <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-10 bg-[radial-gradient(circle,rgba(217,70,239,1)_0%,transparent_70%)] group-hover:opacity-30 group-hover:bg-[radial-gradient(circle,rgba(34,211,238,1)_0%,transparent_70%)] transition-all duration-700 pointer-events-none" />
                     <div className="flex items-center justify-between mb-8 relative z-10">
                       <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500">
                         {proj.icon}
@@ -468,16 +466,16 @@ export default function Home() {
         </section>
 
         {/* TESTIMONIALS */}
-        <section id="testimonials" className="w-full relative border-t border-white/5 bg-gradient-to-b from-[#050014] to-[#0c0a20] pt-16 md:pt-24 pb-16 md:pb-24 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] z-20">
+        <section id="testimonials" className="w-full relative border-t border-white/5 bg-gradient-to-b from-[#050014] to-[#0c0a20] pt-8 md:pt-12 pb-8 md:pb-12 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] z-20">
           <div className="max-w-[85rem] mx-auto px-6 lg:px-8 w-full">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="text-center mb-16">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="text-center mb-8">
               <motion.h2 variants={fadeInUp} className="text-sm font-bold uppercase tracking-widest text-cyan-400 mb-3 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">Enterprise Endorsements</motion.h2>
               <motion.div variants={fadeInUp} className="text-5xl md:text-6xl font-black font-outfit text-white">
                 Trusted by Forward-Thinking Firms
               </motion.div>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {TESTIMONIALS.map((test, idx) => (
                 <motion.div 
                   key={idx} 
@@ -488,7 +486,7 @@ export default function Home() {
                   whileHover={{ y: -10 }}
                   className="p-10 rounded-[2rem] bg-gradient-to-b from-white/5 to-transparent border border-white/10 relative shadow-[0_10px_40px_rgba(0,0,0,0.5)] hover:border-cyan-500/40 transition-all duration-300 group"
                 >
-                  <div className="text-7xl font-serif text-cyan-500/20 absolute -top-2 left-6 group-hover:text-fuchsia-500/30 transition-colors">"</div>
+                  <div className="text-7xl font-serif text-cyan-500/20 absolute -top-2 left-6 group-hover:text-fuchsia-500/30 transition-colors">&quot;</div>
                   <p className="text-[#cbd5e1] text-lg leading-relaxed relative z-10 mb-10 pt-6 font-medium italic">
                     {test.quote}
                   </p>
@@ -508,11 +506,11 @@ export default function Home() {
         </section>
 
         {/* FULL ABOUT SECTION WITH FOUNDER DETAILS LAST */}
-        <section id="about" className="w-full relative border-t border-white/5 bg-[#050014] pt-16 md:pt-24 pb-16 md:pb-24">
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-80 h-80 bg-fuchsia-600/10 blur-[150px] mix-blend-screen pointer-events-none" />
+        <section id="about" className="w-full relative border-t border-white/5 bg-[#050014] pt-8 md:pt-12 pb-8 md:pb-12">
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-80 h-80 rounded-full opacity-10 bg-[radial-gradient(circle,rgba(192,38,211,1)_0%,transparent_70%)] mix-blend-screen pointer-events-none" />
           <div className="max-w-[85rem] mx-auto px-6 lg:px-8 relative z-10 w-full">
             
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="mb-20 text-center max-w-4xl mx-auto">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="mb-12 text-center max-w-4xl mx-auto">
               <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-fuchsia-500/30 bg-fuchsia-500/10 text-xs font-bold text-fuchsia-300 mb-6 uppercase tracking-widest shadow-[0_0_15px_rgba(217,70,239,0.2)]">
                 About The Firm
               </motion.div>
@@ -541,7 +539,7 @@ export default function Home() {
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <span className="px-3 py-1 bg-black/50 border border-white/10 rounded-md text-xs font-bold text-white">Full Stack Engineering</span>
-                      <span className="px-3 py-1 bg-black/50 border border-white/10 rounded-md text-xs font-bold text-white">Smart Contract Security</span>
+                      <span className="px-3 py-1 bg-black/50 border border-white/10 rounded-md text-xs font-bold text-white">Agentic Workflows</span>
                       <span className="px-3 py-1 bg-black/50 border border-white/10 rounded-md text-xs font-bold text-white">LLM Fine-tuning</span>
                     </div>
                   </motion.div>
@@ -549,7 +547,7 @@ export default function Home() {
                   <motion.div variants={fadeInUp} className="p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
                     <h3 className="text-2xl font-black font-outfit mb-4 text-indigo-400 drop-shadow-md">The Grand Vision</h3>
                     <p className="text-[#94a3b8] leading-relaxed">
-                      Our vision is to empower global corporate clients with uncompromising, decentralized structural security and autonomous AI ecosystems. We aim to propel enterprises past legacy bottlenecks by integrating real-time telemetry, predictive RAG modeling, and rigorous smart contract auditing—establishing an absolute standard of trust, scalability, and relentless innovation.
+                      Our vision is to empower global corporate clients with uncompromising, highly scalable autonomous AI ecosystems. We aim to propel enterprises past legacy bottlenecks by integrating real-time telemetry, predictive RAG modeling, and custom AI agents—establishing an absolute standard of efficiency, scalability, and relentless innovation.
                     </p>
                   </motion.div>
                 </div>
@@ -561,13 +559,13 @@ export default function Home() {
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
               className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 p-8 sm:p-12 lg:p-16 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-3xl shadow-2xl relative overflow-hidden group hover:border-cyan-500/30 transition-colors duration-700"
             >
-              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-600/5 blur-[120px] rounded-full group-hover:bg-fuchsia-600/10 transition-colors duration-1000" />
+              <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-5 bg-[radial-gradient(circle,rgba(8,145,178,1)_0%,transparent_70%)] group-hover:opacity-10 group-hover:bg-[radial-gradient(circle,rgba(192,38,211,1)_0%,transparent_70%)] transition-all duration-1000 pointer-events-none" />
               
               <div className="w-full lg:w-1/3 shrink-0 flex justify-center lg:justify-start">
                 <motion.div variants={fadeInUp} className="w-64 h-64 md:w-80 md:h-80 rounded-[3rem] p-1 bg-gradient-to-br from-cyan-400 via-fuchsia-500 to-indigo-600 shadow-[0_0_50px_rgba(217,70,239,0.3)] relative group-hover:shadow-[0_0_80px_rgba(34,211,238,0.4)] transition-all duration-700">
                   <div className="w-full h-full rounded-[2.8rem] bg-[#050014] overflow-hidden flex flex-col items-center justify-center relative">
-                    <div className="absolute inset-0 bg-gradient-to-t from-fuchsia-900/40 to-transparent" />
-                    <UserIcon />
+                    <div className="absolute inset-0 bg-gradient-to-t from-fuchsia-900/40 to-transparent z-10" />
+                    <Image src="/founder.jpg" alt="Founder" fill style={{objectFit: "cover"}} className="rounded-[2.8rem]" />
                   </div>
                 </motion.div>
               </div>
@@ -580,17 +578,17 @@ export default function Home() {
                   Venkaiah P.
                 </motion.h2>
                 <motion.h3 variants={fadeInUp} className="text-lg sm:text-xl md:text-2xl text-cyan-400 mb-8 font-bold font-outfit drop-shadow-md">
-                  Smart Contract Security Auditor & AI Systems Engineer
+                  Lead AI Systems Engineer & Enterprise Architect
                 </motion.h3>
                 <motion.div variants={fadeInUp} className="text-sm md:text-base text-[#cbd5e1] mb-10 leading-relaxed font-light space-y-4">
                   <p>
-                    Complementing decentralized security expertise, I design and develop secure AI-powered systems and Agents (Chatbots), focusing on Retrieval-Augmented Generation (RAG) and intelligent knowledge architectures. My multidisciplinary capability enables the development of secure, scalable, and domain-aware AI solutions.
+                    I specialize in designing and developing production-ready AI-powered systems and autonomous Agents, focusing on Retrieval-Augmented Generation (RAG) and intelligent knowledge architectures. My multidisciplinary capability enables the creation of highly scalable, secure, and domain-aware AI solutions tailored for enterprise clients.
                   </p>
                   <p>
-                    As a Smart Contract Security Auditor, I specialize in vulnerability detection, exploit simulation, and protocol hardening across EVM-based ecosystems—identifying adversarial attack surfaces including reentrancy vectors, oracle manipulation risks, economic exploits, and invariant violations.
+                    With deep expertise in cloud architecture and LLM orchestration, I lead the technical development of bespoke AI applications—from intelligent chatbots to self-healing workflow automations. Our focus is on delivering tangible ROI through reliable, intelligent software systems that run seamlessly at scale.
                   </p>
                   <p>
-                    Further extending my expertise, I have developed data-driven interfaces for IoT-based smart building systems (BMS), integrating devices, sensors, and real-time telemetry. This includes designing responsive dashboards utilizing Apache ECharts and optimizing UI workflows for high-frequency data operations. Additionally, I hold experience in Data Science coaching, delivering structured technical education across machine learning and generative AI domains.
+                    Further extending my expertise, I build data-driven interfaces and intelligent dashboards that integrate real-time telemetry and deep AI analytics. I also hold experience in rigorous Data Science methodology, ensuring that our models provide precise, hallucination-free outputs for critical corporate environments.
                   </p>
                 </motion.div>
                 <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
@@ -608,8 +606,8 @@ export default function Home() {
         </section>
 
         {/* CONTACT FORM */}
-        <section id="contact" className="w-full relative border-t border-white/5 bg-gradient-to-b from-[#050014] to-[#0c0a20] pt-16 md:pt-24 pb-16 md:pb-20 z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/10 blur-[150px] mix-blend-screen pointer-events-none" />
+        <section id="contact" className="w-full relative border-t border-white/5 bg-gradient-to-b from-[#050014] to-[#0c0a20] pt-8 md:pt-12 pb-8 md:pb-12 z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10 bg-[radial-gradient(circle,rgba(79,70,229,1)_0%,transparent_70%)] mix-blend-screen pointer-events-none" />
           
           <div className="max-w-[85rem] mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10 w-full">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-lg">
@@ -646,7 +644,7 @@ export default function Home() {
               transition={{ duration: 0.8, type: "spring" }}
               className="bg-[#0c0a20]/80 backdrop-blur-3xl p-12 rounded-[2.5rem] border border-fuchsia-500/30 shadow-[0_0_80px_rgba(217,70,239,0.15)] relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/20 blur-[120px] pointer-events-none" />
+              <div className="absolute top-0 right-0 w-80 h-80 rounded-full opacity-20 bg-[radial-gradient(circle,rgba(6,182,212,1)_0%,transparent_70%)] pointer-events-none" />
               
               <form onSubmit={handleContactSubmit} className="relative z-10 flex flex-col gap-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -683,14 +681,21 @@ export default function Home() {
                   </span>
                 </button>
               </form>
+              
+              {/* Toast Message */}
+              {toastMessage && (
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 px-6 py-3 bg-fuchsia-500 text-white font-bold rounded-full shadow-[0_0_20px_rgba(217,70,239,0.5)] z-20 animate-bounce">
+                  {toastMessage}
+                </div>
+              )}
             </motion.div>
 
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-white/5 bg-[#02000a] pt-16 md:pt-20 pb-8 md:pb-10 z-20 relative">
-          <div className="max-w-[85rem] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-12 md:mb-16 w-full">
+        <footer className="border-t border-white/5 bg-[#02000a] pt-8 md:pt-10 pb-8 md:pb-10 z-20 relative">
+          <div className="max-w-[85rem] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12 w-full">
             <div className="md:col-span-2">
               <Link href="/" className="flex items-center gap-4 mb-6 md:mb-8 cursor-pointer group w-max">
                 <AnimatedLogo />
@@ -705,10 +710,10 @@ export default function Home() {
             <div>
               <h4 className="text-white font-black mb-4 md:mb-6 font-outfit text-lg md:text-xl">Sitemap</h4>
               <div className="flex flex-col gap-3 md:gap-4 text-[#94a3b8] font-bold text-sm">
-                <a href="/#services" className="hover:text-cyan-400 transition-colors">Services</a>
-                <a href="/#projects" className="hover:text-fuchsia-400 transition-colors">Innovations</a>
-                <a href="/#about" className="hover:text-purple-400 transition-colors">About Firm</a>
-                <a href="/#contact" className="hover:text-indigo-400 transition-colors">Engage</a>
+                <Link href="/#services" className="hover:text-cyan-400 transition-colors">Services</Link>
+                <Link href="/#projects" className="hover:text-fuchsia-400 transition-colors">Innovations</Link>
+                <Link href="/#about" className="hover:text-purple-400 transition-colors">About Firm</Link>
+                <Link href="/#contact" className="hover:text-indigo-400 transition-colors">Engage</Link>
               </div>
             </div>
             <div>

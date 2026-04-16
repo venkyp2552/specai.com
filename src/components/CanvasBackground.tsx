@@ -7,8 +7,8 @@ import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 
 const PROJECTS = [
-  "OracleNet", "NeuroGraph", "OmniRAG", "Synthetica", "Chronosolver", 
-  "HyperTwin", "QuantumFlow", "Somnium", "EtherGuard"
+  "RetailAssist", "SalesForge", "DocuMind", "NeuroGraph", "OmniRAG", 
+  "Synthetica", "QuantumFlow", "Somnium", "Visionary"
 ];
 
 function OrbitingProjects({ isMobile }: { isMobile: boolean }) {

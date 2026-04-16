@@ -1,0 +1,51 @@
+﻿
+D:\Gen_AI\specai\src\app\architecture\[slug]\page.tsx
+    2:33  warning  'GitMerge' is defined but never used                             @typescript-eslint/no-unused-vars
+    5:31  error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+    9:39  error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  241:88  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  249:52  error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  297:48  error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+
+D:\Gen_AI\specai\src\app\page.tsx
+    4:87   warning  'LinkIcon' is defined but never used                                                                                                                   @typescript-eslint/no-unused-vars
+    4:97   warning  'Network' is defined but never used                                                                                                                    @typescript-eslint/no-unused-vars
+    4:106  warning  'ShieldCheck' is defined but never used                                                                                                                @typescript-eslint/no-unused-vars
+    4:139  warning  'Terminal' is defined but never used                                                                                                                   @typescript-eslint/no-unused-vars
+    4:149  warning  'RefreshCw' is defined but never used                                                                                                                  @typescript-eslint/no-unused-vars
+    6:20   warning  'useRef' is defined but never used                                                                                                                     @typescript-eslint/no-unused-vars
+    7:8    warning  'Image' is defined but never used                                                                                                                      @typescript-eslint/no-unused-vars
+  257:14   warning  'err' is defined but never used                                                                                                                        @typescript-eslint/no-unused-vars
+  488:146  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                        react/no-unescaped-entities
+  705:17   error    Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  706:17   error    Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  707:17   error    Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  708:17   error    Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  740:10   warning  'ClockIcon' is defined but never used                                                                                                                  @typescript-eslint/no-unused-vars
+
+D:\Gen_AI\specai\src\app\services\[slug]\page.tsx
+    5:31  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+    9:39  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  295:45  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  364:61  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  380:40  error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+
+D:\Gen_AI\specai\src\components\CanvasBackground.tsx
+  5:10  warning  'Environment' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Gen_AI\specai\src\components\LiveDemoModal.tsx
+  86:106  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+D:\Gen_AI\specai\src\components\LiveDemoModal.tsx:86:106
+  84 |                       {[...Array(6)].map((_, i) => (
+  85 |                         <div key={i} className="animate-pulse" style={{ animationDelay: `${i * 0.2}s` }}>
+> 86 |                           <span className="text-fuchsia-400">[SERVER]</span> Processing payload packet {(Math.random() * 1000).toFixed(0)}... OK
+     |                                                                                                          ^^^^^^^^^^^^^ Cannot call impure function
+  87 |                         </div>
+  88 |                       ))}
+  89 |                       <div className="mt-4 p-4 md:p-6 border border-white/10 bg-white/5 rounded-xl text-white font-sans flex flex-col md:flex-row md:items-center justify-between gap-4">  react-hooks/purity
+
+Γ£û 27 problems (16 errors, 11 warnings)
+
